@@ -1,0 +1,92 @@
+.parallax {
+  /* --u: unit scale (stageWidth / 1920), set from JS */
+  /* --mx / --my: eased pointer position, -1..1, set from JS each frame */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      120% 100% at 50% 100%,
+      rgba(108, 119, 157, 0.2) 0%,
+      rgba(108, 119, 157, 0.06) 35%,
+      rgba(108, 119, 157, 0.02) 60%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    #06070a;
+}
+
+/* Aspect-locked content (880×1920 design), vertically centered in the full-
+   height section so there's no dark bar below it. */
+.parallax__stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc(880 * var(--u) * 1px);
+}
+
+/* Big static text that stays anchored behind the floating logos. */
+.parallax__heading {
+  position: absolute;
+  left: 50%;
+  top: calc(200 * var(--u) * 1px);
+  transform: translateX(-50%);
+  margin: 0;
+  width: calc(1208 * var(--u) * 1px);
+  text-align: center;
+  font-weight: 700;
+  font-size: calc(160 * var(--u) * 1px);
+  line-height: calc(160 * var(--u) * 1px);
+  letter-spacing: -0.01em;
+  color: #6c779d;
+  word-break: break-word;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Outer element carries the parallax translate (per-logo speed via --sx/--sy). */
+.badge {
+  position: absolute;
+  transform: translate(
+    calc(-50% + var(--mx) * var(--sx) * var(--u) * 1px),
+    calc(-50% + var(--my) * var(--sy) * var(--u) * 1px)
+  );
+  will-change: transform;
+}
+
+/* Inner element carries the blurred container + the hover scale. */
+.badge__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(16 * var(--u) * 1px) calc(18 * var(--u) * 1px);
+  border-radius: calc(20 * var(--u) * 1px);
+  background: rgba(108, 119, 157, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: default;
+}
+
+.badge__inner:hover {
+  transform: scale(1.1);
+}
+
+.badge__logo {
+  display: block;
+  width: calc(var(--w) * var(--u) * 1px);
+  height: calc(var(--h) * var(--u) * 1px);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    transform: translate(-50%, -50%);
+  }
+  .badge__inner {
+    transition: none;
+  }
+}

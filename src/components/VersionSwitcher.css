@@ -1,0 +1,40 @@
+.version-switcher {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(108, 119, 157, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(108, 119, 157, 0.2);
+}
+
+.version-switcher__btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Gilroy", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.version-switcher__btn:hover {
+  color: #fff;
+}
+
+.version-switcher__btn.is-active {
+  background: #6c779d;
+  color: #fff;
+}
