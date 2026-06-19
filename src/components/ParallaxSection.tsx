@@ -47,7 +47,7 @@ const VERTICAL_RATIO = 0.28; // vertical travel relative to horizontal speed
 const EASE = 0.09; // lerp factor — lower = smoother / laggier follow
 
 export default function ParallaxSection() {
-  const stageRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLElement>(null);
 
   // Keep the unit scale (--u) in sync with the rendered stage width.
   useLayoutEffect(() => {
